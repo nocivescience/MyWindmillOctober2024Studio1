@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    canvas {
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"
+        integrity="sha512-0zGLOFv/+OQ6YfVCSGDQWhrDRx0ONmBqWvs3gI4olm8i6xtKoG1FhEnB4eTaWCVnojyfUDgE8Izeln+mAJAkFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+        let angle = Math.PI / 6;
+        let targetX, targetY, colorTriangulo;
+        const colores = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+        
+        function setup(){
+            createCanvas(400, 400);
+            targetX = width / 2;  // Inicialmente en el centro
+            targetY = height / 2;
+            colorTriangulo = random(colores);
+        }
+
+        function draw(){
+            background(200);
+            fill(colorTriangulo);
+            stroke(0);
+
+            push();
+            translate(targetX, targetY);  // Mueve el triángulo al objetivo
+            rotate(angle);
+            triangle(0, -50, 50, 50, -50, 50);
+            pop(); 
+
+            angle += 0.01;
+        }
+
+        function mousePressed() {
+            targetX = mouseX;  // Actualiza la posición X al hacer clic
+            targetY = mouseY;  // Actualiza la posición Y al hacer clic
+            colorTriangulo = random(colores);
+        }
+    </script>
+</body>
+</html>
